@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة الحسنين - تنوع لا ينتهي</title>
+    
+    <style>
+        /* ================================== */
+        /* CSS للتصميم المنظم والأنيق */
+        /* ================================== */
+        
+        :root {
+            --primary-color: #007bff; /* أزرق مؤسسي */
+            --secondary-color: #28a745; /* أخضر للفئات المميزة */
+            --bg-color: #f8f9fa; 
+            --card-bg: #ffffff;
+            --text-color: #343a40;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Tajawal', 'Arial', sans-serif; /* استخدام خط عربي أنيق إن أمكن */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            text-align: right;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* شريط التنقل (Header) */
+        .header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow-light);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        /* قسم البطل (Hero Section) - البحث والتنوع */
+        .hero-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-section h2 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .search-box input {
+            padding: 15px 20px;
+            width: 70%;
+            max-width: 500px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* أقسام الكتب المتنوعة (Category Cards) */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: var(--text-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            text-align: right;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-right: 5px solid var(--secondary-color); /* شريط لتمييز الفئة */
+            opacity: 0; /* للتحريك عند الظهور */
+            transform: translateY(20px);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .category-card p {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        /* حركة الظهور (Animation) */
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>مكتبة الحسنين</h1>
+        <nav>
+            <a href="#" style="color: var(--primary-color); text-decoration: none; margin-right: 15px;">الرئيسية</a>
+            <a href="#" style="color: var(--text-color); text-decoration: none; margin-right: 15px;">التصنيفات</a>
+            <a href="#" style="color: var(--text-color); text-decoration: none;">تواصل معنا</a>
+        </nav>
+    </header>
+
+    <div class="hero-section">
+        <h2>اكتشف تنوع المعرفة</h2>
+        <p>آلاف الكتب في جميع المجالات تحت سقف واحد. ابدأ البحث الآن!</p>
+        <div class="search-box">
+            <input type="text" placeholder="اكتب اسم الكتاب أو المؤلف للبحث السريع...">
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">✨ تصنيفات الكتب الأساسية</h2>
+        <div class="category-grid" id="main-categories">
+            
+            <div class="category-card" data-category="Technology">
+                <h3>علوم الحاسوب والبرمجة</h3>
+                <p>Python, JavaScript, Data Science, الذكاء الاصطناعي وتعلم الآلة.</p>
+            </div>
+            
+            <div class="category-card" data-category="History">
+                <h3>التاريخ والحضارات القديمة</h3>
+                <p>تاريخ مصر القديم، العصور الوسطى، التاريخ الإسلامي الحديث.</p>
+            </div>
+            
+            <div class="category-card" data-category="Literature">
+                <h3>الروايات والأدب العربي والعالمي</h3>
+                <p>أدب جاهلي، شعر، روايات عالمية مترجمة، فنون المسرح والسينما.</p>
+            </div>
+            
+            <div class="category-card" data-category="Science">
+                <h3>الفيزياء والكيمياء والرياضيات</h3>
+                <p>نظرية الكم، علوم الفضاء، علم الأحياء، الأبحاث الكيميائية الحديثة.</p>
+            </div>
+            
+            <div class="category-card" data-category="Self-Help">
+                <h3>التنمية الذاتية والمهارات</h3>
+                <p>التخطيط، إدارة الوقت، الذكاء العاطفي، مهارات التفاوض والتأثير.</p>
+            </div>
+
+            <div class="category-card" data-category="Philosophy">
+                <h3>الفلسفة والدراسات الدينية</h3>
+                <p>منطق، ميتافيزيقا، تاريخ الأديان، تفاسير، الفكر الحديث والمعاصر.</p>
+            </div>
+            
+        </div>
+        
+        <h2 class="section-title">🚀 إصدارات جديدة ومميزة</h2>
+        <div class="category-grid" id="new-releases">
+            <div class="category-card" data-category="New">
+                <h3>كتاب: أسرار الـ A.I.</h3>
+                <p>أحدث ما توصلت إليه خوارزميات الذكاء الاصطناعي لعام 2024.</p>
+            </div>
+            <div class="category-card" data-category="New">
+                <h3>كتاب: رحلة عبر الكون</h3>
+                <p>دليل مبسط لعلوم الفلك وآخر الاكتشافات الكونية.</p>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="footer" style="background-color: var(--text-color); color: white; text-align: center; padding: 20px 0; margin-top: 40px;">
+        <p>مكتبة الحسنين - مصدرك المجاني اللامحدود للمعرفة.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.category-card');
+
+            // إعداد مراقب التفاعل (Intersection Observer)
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // إذا كان العنصر مرئياً
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible'); // إضافة كلاس 'visible' لتشغيل حركة CSS
+                        observer.unobserve(entry.target); // إيقاف المراقبة بعد ظهور العنصر
+                    }
+                });
+            }, {
+                threshold: 0.1 // تشغيل الحركة عندما يكون 10% من العنصر مرئياً
+            });
+
+            // تطبيق المراقبة على جميع بطاقات الكتب
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+
+</body>
+</html>
